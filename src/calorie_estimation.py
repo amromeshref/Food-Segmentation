@@ -3,14 +3,14 @@ import pandas as pd
 CALORIES_DATA_CSV_PATH = "../data/food_nutrition.csv"
 
 class CalorieEstimator:
-    def __init__(self, csv_path: str):
+    def __init__(self, csv_path: str = None):
         """
         Initializes the calorie estimator using food density and calorie data.
 
         Args:
             csv_path (str): Path to the CSV file containing food data.
         """
-        self.data = pd.read_csv(csv_path)
+        self.data = pd.read_csv(CALORIES_DATA_CSV_PATH)
         self.data.set_index("Food Item", inplace=True)
 
     def estimate(self, food_name: str, volume_m3: float) -> float:
