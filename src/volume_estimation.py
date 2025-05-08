@@ -2,7 +2,7 @@ import pyzed.sl as sl
 import cv2
 import numpy as np
 from scipy.spatial import ConvexHull
-from segmentation_model import SegmentationModel  # Adjust the import path if needed
+from segmentation_model import SegmentationModel
 
 
 class FoodVolumeEstimator(SegmentationModel):
