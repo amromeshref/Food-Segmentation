@@ -47,7 +47,7 @@ The system uses **YOLO (You Only Look Once)**, a state-of-the-art real-time obje
 - Segmentation results provide the names of detected food items and the polygon coordinates of their boundaries.
 - These polygons represent the contours of the detected objects, which are essential for subsequent volume estimation.
 
-#### File: `segmentation_model.py`
+#### File: `src/segmentation_model.py`
 - **YOLO** model is loaded and used to segment food items in an image.
 - **`segment()`** method processes the image and provides the object names and bounding polygons.
 - **`get_object_polygon_points()`** extracts polygon coordinates, representing object boundaries, and **`get_object_names()`** maps them to recognizable food items.
@@ -60,7 +60,7 @@ Volume estimation is achieved by using depth information provided by the **ZED 2
 - **Convex Hull** algorithm is applied to the 3D points inside the mask to estimate the volume of the object.
 - The resulting volume is reported in cubic meters (m³).
 
-#### File: `volume_estimation.py`
+#### File: `src/volume_estimation.py`
 - **`polygon_to_mask()`** converts the detected polygon points to a binary mask.
 - **`compute_volume_from_mask()`** estimates the 3D volume of the food item by constructing a Convex Hull around the 3D points inside the mask.
 - The system continuously captures frames from the ZED 2 camera, processes them, and estimates the volume of the detected food items.
@@ -73,7 +73,7 @@ Once the food items are detected and their volumes are estimated, the system cal
 - The **calorie estimation** formula typically involves multiplying the volume of the food by a caloric density factor (calories per cubic meter).
 - The final calorie count is displayed alongside the volume of the detected food items.
 
-#### File: `real_time_calorie_estimation.py`
+#### File: `src/real_time_calorie_estimation.py`
 - **`real_time_calorie_estimation.py`** integrates the segmentation, volume estimation, and calorie estimation processes, running them sequentially on the live feed from the ZED camera.
 - It calculates the calorie count for each food item detected in real-time and displays the results on the screen.
 
@@ -85,7 +85,7 @@ For each detected food item, the system can suggest a recipe based on the food i
 - After detecting the food items, the system queries the recipe database to retrieve and display a recipe for each food item.
 - If no recipe is found for a detected food item, the system will notify the user that no recipe is available.
 
-#### File: `recipe_suggestion.py`
+#### File: `src/recipe_suggestion.py`
 - **`get_recipe()`** retrieves a recipe from the CSV database for each detected food item.
 - **`suggest_recipes_from_image()`** detects food items in an image and suggests recipes for each detected food item.
 
