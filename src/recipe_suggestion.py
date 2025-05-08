@@ -1,9 +1,9 @@
 import pandas as pd
 import cv2
-from segmentation_model import SegmentationModel  # assumes your base class is saved in segmentation_model.py
+from segmentation_model import SegmentationModel 
 
 
-RECIPE_CSV_PATH = "../data/food_recipes.csv"  # Use actual path to your CSV
+RECIPE_CSV_PATH = "../data/food_recipes.csv" 
 
 
 class FoodRecipeSuggester(SegmentationModel):
