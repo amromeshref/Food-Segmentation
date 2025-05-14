@@ -1,27 +1,29 @@
 import pandas as pd
 import cv2
-from segmentation_model import SegmentationModel 
+from segmentation_model import SegmentationModel
 
-
-RECIPE_CSV_PATH = "../data/food_recipes.csv" 
+RECIPE_XLSX_PATH = "../data/food_recipes.xlsx"  # Update this path to your actual Excel file
 
 
 class FoodRecipeSuggester(SegmentationModel):
     def __init__(self):
         super().__init__()
-        self.recipe_data = pd.read_csv(RECIPE_CSV_PATH)
-        self.recipe_data.set_index("Food Item", inplace=True)
+        # Load Excel file and set index to "Class Name"
+        self.recipe_data = pd.read_excel(RECIPE_XLSX_PATH)
+        self.recipe_data.set_index("Class Name", inplace=True)
 
     def get_recipe(self, food_item: str) -> str:
         """
-        Get the recipe for a given food item.
+        Get the recipe (ingredients and steps) for a given food item.
         Args:
             food_item (str): Name of the detected food item.
         Returns:
-            str: Recipe if found, else a message.
+            str: Recipe details if found, else a message.
         """
         if food_item in self.recipe_data.index:
-            return self.recipe_data.loc[food_item, "Recipe"]
+            ingredients = self.recipe_data.loc[food_item, "Ingredients"]
+            steps = self.recipe_data.loc[food_item, "Steps"]
+            return f"Ingredients: {ingredients}\nSteps: {steps}"
         else:
             return "No recipe found for this item."
 
@@ -42,9 +44,9 @@ class FoodRecipeSuggester(SegmentationModel):
         print("Detected food items and recipes:\n")
         for food in object_names:
             recipe = self.get_recipe(food)
-            print(f"{food} ➜ {recipe}\n")
+            print(f"{food} ➜\n{recipe}\n")
 
 if __name__ == "__main__":
     suggester = FoodRecipeSuggester()
-    image_path = "../images/024678.jpg"
+    image_path = "../images/147426.jpg"
     suggester.suggest_recipes_from_image(image_path)
