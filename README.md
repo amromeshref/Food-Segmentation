@@ -5,15 +5,11 @@ This project is designed to estimate the volume and calories of food items in re
 ## Table of Contents
 - [Overview](#overview)
 - [Requirements](#requirements)
-- [Setup Instructions](#setup-instructions)
 - [How It Works](#how-it-works)
   - [Segmentation](#segmentation)
   - [Volume Estimation](#volume-estimation)
   - [Calorie Estimation](#calorie-estimation)
   - [Recipe Suggestion](#recipe-suggestion)
-- [Run the Application](#run-the-application)
-- [Contributing](#contributing)
-- [License](#license)
 
 ## Overview
 
